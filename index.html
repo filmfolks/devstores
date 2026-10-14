@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dev Stores · Rajajinagar, Bengaluru</title>
+<meta name="description" content="Dev Stores, your neighbourhood convenience store in Rajajinagar. Pick your essentials, build a quote, send it on WhatsApp.">
+
+<!-- PWA & Mobile Web App Meta -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#07140E">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Dev Stores">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300..900&family=Caveat+Brush&family=Albert+Sans:wght@400;600;800&display=swap">
+<style>
+:root{color-scheme:dark;--bg:#07140E;--bg2:#0D2218;--card:#12301F;--ink:#F3F7EC;--mute:#9DBBA6;--fx:#FFD23F;--hot:#FF6B1A;--line:rgba(243,247,236,.16);
+--d:"Unbounded","Arial Black",Impact,sans-serif;--s:"Caveat Brush","Segoe Print",cursive;--b:"Albert Sans",system-ui,sans-serif;--g:clamp(16px,4vw,56px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.55 var(--b);overflow-x:clip;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+a{color:inherit}button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--fx);outline-offset:3px;border-radius:8px}
+.w{max-width:1280px;margin-inline:auto;padding-inline:var(--g)}
+#prog{position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--fx),var(--hot));transform:scaleX(0);transform-origin:left;z-index:90}
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:rgba(7,20,14,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .w{display:flex;align-items:center;gap:14px;min-height:64px}
+.logo{font:900 1.05rem var(--d);text-decoration:none;margin-right:auto;display:flex;gap:10px;align-items:center}
+.logo b{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--fx);color:#07140E;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.logo:hover b{transform:rotate(-14deg) scale(1.12)}
+nav ul{display:none;gap:4px;list-style:none;margin:0;padding:0}@media(min-width:820px){nav ul{display:flex}}
+nav ul a{padding:8px 14px;border-radius:99px;text-decoration:none;font-weight:600;transition:.25s}
+nav ul a:hover{background:var(--fx);color:#07140E}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.pwa-nav-btn{display:inline-flex;align-items:center;gap:6px;background:var(--card);color:var(--fx);border:1.5px solid var(--fx);border-radius:99px;padding:6px 14px;font-weight:700;font-size:.85rem;min-height:42px;transition:all .25s ease}
+.pwa-nav-btn:hover{background:var(--fx);color:#07140E;transform:scale(1.04)}
+.cartb{display:flex;gap:10px;align-items:center;background:var(--hot);color:#07140E;border:0;border-radius:99px;padding:8px 10px 8px 18px;font-weight:800;min-height:46px;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.cartb:hover{transform:scale(1.06) rotate(-2deg)}
+.cartb i{font-style:normal;min-width:30px;height:30px;display:grid;place-items:center;border-radius:99px;background:#07140E;color:var(--hot)}
+.cartb.bump i{animation:bump .5s}@keyframes bump{40%{transform:scale(1.7) rotate(-14deg)}}
+/* hero */
+.hero{position:relative;min-height:calc(100svh - 64px);display:flex;flex-direction:column;justify-content:center;overflow:clip;padding-block:40px;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:-20%;z-index:-1;background:radial-gradient(40% 40% at var(--mx,70%) var(--my,30%),rgba(255,210,63,.22),transparent 70%),radial-gradient(50% 50% at 10% 90%,rgba(23,130,74,.35),transparent 70%)}
+.tag{font:600 .75rem var(--b);letter-spacing:.2em;text-transform:uppercase;display:flex;gap:10px;align-items:center}
+.tag i{width:10px;height:10px;border-radius:50%;background:#3FCB7C;animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(63,203,124,.7)}80%,100%{box-shadow:0 0 0 14px transparent}}
+h1{margin:.2em 0 0;font:900 clamp(3.4rem,15.5vw,15rem)/.86 var(--d);letter-spacing:-.03em;text-transform:uppercase}
+h1 .l{display:block;white-space:nowrap}h1 .l2{color:var(--fx)}
+.ch{display:inline-block;transform:translate3d(0,110%,0) rotate(8deg);opacity:0;font-variation-settings:"wght" var(--w,900);scale:var(--sc,1)}
+.go .ch{animation:drop .9s cubic-bezier(.2,1.4,.4,1) forwards;animation-delay:calc(var(--i)*55ms + 200ms)}
+@keyframes drop{to{transform:none;opacity:1}}
+h1 .l2 .ch{transition:color .3s}h1 .l2 .ch:hover{color:var(--ink)}
+.script{font:400 clamp(1.6rem,4vw,3rem)/1 var(--s);color:var(--fx);display:inline-block;transform:rotate(-4deg);margin-top:18px}
+.hf{display:flex;flex-wrap:wrap;gap:24px 48px;justify-content:space-between;align-items:flex-end;margin-top:24px}
+.hf p{max-width:44ch;margin:0;font-size:clamp(1.05rem,2vw,1.3rem);color:var(--mute)}
+.btn{display:inline-flex;gap:10px;align-items:center;min-height:52px;padding:12px 26px;border-radius:99px;border:2px solid var(--ink);background:none;font-weight:800;text-decoration:none;transition:.3s cubic-bezier(.3,1.6,.5,1)}
+.btn:hover{transform:translateY(-4px);background:var(--fx);color:#07140E;border-color:var(--fx)}
+.btn.hot{background:var(--hot);border-color:var(--hot);color:#07140E}
+.fl{position:absolute;z-index:3;font-size:var(--z);left:var(--x);top:var(--y);filter:drop-shadow(0 18px 18px rgba(0,0,0,.5));animation:flt var(--t) ease-in-out infinite alternate;border:0;background:none;padding:0;transform:translate(var(--px,0),var(--py,0))}
+.fl span{display:block;transition:transform .4s cubic-bezier(.3,1.8,.5,1)}.fl:hover span{transform:scale(1.35) rotate(14deg)}
+@keyframes flt{to{margin-top:-18px}}@media(max-width:640px){.fl:nth-of-type(n+4){display:none}}
+/* bands */
+.band{overflow:hidden;white-space:nowrap;padding-block:14px;border-block:2px solid #07140E;background:var(--fx);color:#07140E;transform:skewY(var(--sk,0deg))}
+.band.b2{background:var(--hot);margin-top:-2px}
+.band div{display:inline-flex;gap:34px;font:900 clamp(1.6rem,4.5vw,3.4rem)/1 var(--d);text-transform:uppercase;will-change:transform}
+.band em{font-style:normal;opacity:.45}
+/* sections */
+section{padding-block:clamp(60px,10vw,130px);position:relative}
+.k{font:400 clamp(1.4rem,3vw,2.2rem)/1 var(--s);color:var(--fx)}
+h2{font:900 clamp(2.2rem,7vw,6rem)/.95 var(--d);letter-spacing:-.04em;text-transform:uppercase;margin:.2em 0 .3em}
+.kin .wd{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em}
+.kin .ch{transition:none}.kin.in .ch{animation:drop .8s cubic-bezier(.2,1.3,.4,1) forwards;animation-delay:calc(var(--i)*35ms)}
+.lead{color:var(--mute);max-width:52ch;font-size:1.15rem}
+/* stage */
+.stage{background:var(--bg2);overflow:clip}
+.ghost{position:absolute;left:0;right:0;top:50%;translate:0 -50%;font:900 clamp(7rem,28vw,28rem)/.8 var(--d);text-transform:uppercase;color:color-mix(in srgb,var(--fx) 9%,transparent);white-space:nowrap;pointer-events:none;z-index:0;text-align:center}
+.stage .w{position:relative;z-index:1}
+.chips{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:28px 0}
+.chips button{border:2px solid var(--line);background:none;border-radius:99px;padding:10px 20px;font-weight:700;transition:.3s cubic-bezier(.3,1.6,.5,1)}
+.chips button:hover{transform:translateY(-3px) rotate(-2deg)}
+.chips button[aria-pressed=true]{background:var(--fx);color:#07140E;border-color:var(--fx);transform:scale(1.07)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:18px;list-style:none;padding:0;margin:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:20px;position:relative;overflow:hidden;transform-style:preserve-3d;transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s,border-color .3s;animation:pop .6s cubic-bezier(.2,1.5,.4,1) both;animation-delay:calc(var(--n)*50ms)}
+@keyframes pop{from{opacity:0;transform:translateY(40px) scale(.9)}}
+.card:hover{border-color:var(--fx)}
+.card::after{content:"";position:absolute;inset:0;background:radial-gradient(180px at var(--gx,50%) var(--gy,0%),color-mix(in srgb,var(--fx) 25%,transparent),transparent);opacity:0;transition:.3s;pointer-events:none}
+.card:hover::after{opacity:1}
+.ph{height:150px;border-radius:18px;background:var(--bg);display:grid;place-items:center;font-size:5rem;overflow:hidden;margin-bottom:14px}
+.ph img{width:100%;height:100%;object-fit:cover}
+.ph span{display:block;transition:transform .5s cubic-bezier(.3,1.8,.5,1)}.card:hover .ph span{transform:scale(1.2) rotate(-8deg)}
+.card h3{font:800 1.05rem var(--d);margin:0;letter-spacing:-.02em}.card small{color:var(--mute)}
+.add{margin-top:14px;width:100%;border:0;border-radius:14px;min-height:44px;background:var(--fx);color:#07140E;font-weight:800;transition:transform .2s}
+.add:active{transform:scale(.94)}
+.fly{position:fixed;z-index:200;font-size:2.4rem;pointer-events:none}
+/* steps */
+.steps{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));list-style:none;padding:0;margin:40px 0 0;counter-reset:s}
+.steps li{counter-increment:s;border-top:3px solid var(--fx);padding-top:20px;position:relative}
+.steps li::before{content:counter(s);font:900 7rem/.8 var(--d);color:var(--hot);display:block;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.steps li:hover::before{transform:translateX(12px) rotate(-6deg)}
+.steps h3{font:900 1.6rem var(--d);margin:14px 0 4px;text-transform:uppercase}.steps p{color:var(--mute);margin:0}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;margin-top:50px}
+.stats b{display:block;font:900 clamp(2.6rem,7vw,5rem)/1 var(--d);color:var(--fx)}
+/* visit */
+.visit{background:var(--fx);color:#07140E}.visit .k{color:#07140E}.visit .btn{border-color:#07140E}.visit .btn:hover{background:#07140E;color:var(--fx)}
+.visit .btn.hot{color:#07140E}.visit address{font:800 clamp(1.4rem,3vw,2.2rem)/1.2 var(--d);font-style:normal;margin:20px 0 28px;letter-spacing:-.03em}
+footer{padding:30px var(--g);text-align:center;color:var(--mute);font-size:.9rem;border-top:1px solid var(--line)}
+footer a{color:var(--fx);text-decoration:underline;text-underline-offset:3px;font-weight:600;transition:color .2s}
+footer a:hover{color:var(--ink)}
+/* drawer */
+#dr{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--bg2);border-left:2px solid var(--fx);z-index:100;transform:translateX(105%);transition:transform .5s cubic-bezier(.2,1,.3,1);display:flex;flex-direction:column;padding:22px;padding-top:calc(22px + env(safe-area-inset-top,0px));padding-bottom:calc(22px + env(safe-area-inset-bottom,0px))}
+#dr.open{transform:none}
+#dr h2{font-size:2.2rem;margin:0 0 10px;display:flex;justify-content:space-between;align-items:center}
+#dr h2 button{border:2px solid var(--line);background:none;border-radius:50%;width:42px;height:42px}
+#ql{flex:1;overflow:auto;list-style:none;padding:0;margin:0}
+#ql li{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+#ql li>span:first-child{font-size:1.8rem}#ql li b{flex:1;font-weight:700}
+#ql button{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--mute);background:none}
+#dr input{width:100%;margin:14px 0;padding:14px;border-radius:14px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
+.empty{color:var(--mute);padding:20px 0}
+.bd{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:95;opacity:0;pointer-events:none;transition:.4s;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}.bd.open{opacity:1;pointer-events:auto}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));translate:-50% 140px;background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:99px;font-weight:700;z-index:210;transition:translate .5s cubic-bezier(.3,1.5,.5,1)}.toast.on{translate:-50% 0}
+
+/* PWA Install Modal / Sheet */
+#pwaModal{position:fixed;bottom:0;left:0;right:0;margin:auto;max-width:480px;background:#0d2218;border:2px solid var(--fx);border-bottom:none;border-radius:28px 28px 0 0;padding:26px 24px calc(24px + env(safe-area-inset-bottom,0px));z-index:250;box-shadow:0 -12px 40px rgba(0,0,0,.8);transform:translateY(110%);transition:transform .5s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;gap:16px}
+#pwaModal.show{transform:translateY(0)}
+.pwa-header{display:flex;align-items:center;gap:14px}
+.pwa-icon{width:56px;height:56px;border-radius:16px;background:var(--fx);color:#07140E;display:grid;place-items:center;font:900 1.8rem var(--d);flex-shrink:0;box-shadow:0 6px 16px rgba(255,210,63,.3)}
+.pwa-title-wrap{flex:1}
+.pwa-title{font:900 1.25rem var(--d);margin:0;letter-spacing:-.02em;color:var(--ink);line-height:1.2}
+.pwa-sub{font-size:.85rem;color:var(--mute);margin-top:3px}
+.pwa-close{border:0;background:rgba(255,255,255,.08);color:var(--mute);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:1.1rem;cursor:pointer;transition:.2s}
+.pwa-close:hover{background:rgba(255,255,255,.18);color:var(--ink)}
+.pwa-body{color:var(--mute);font-size:.95rem;line-height:1.45;margin:0}
+.pwa-features{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0}
+.pwa-feature{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:8px 12px;font-size:.82rem;display:flex;align-items:center;gap:8px}
+.pwa-feature b{color:var(--fx)}
+.pwa-actions{display:flex;gap:10px;margin-top:6px}
+.pwa-install-btn{flex:2;background:var(--fx);color:#07140E;border:0;border-radius:99px;padding:14px 20px;font:800 1rem var(--b);min-height:50px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .2s,background .2s}
+.pwa-install-btn:hover{background:#ffe066;transform:scale(1.02)}
+.pwa-dismiss-btn{flex:1;background:transparent;border:1.5px solid var(--line);color:var(--mute);border-radius:99px;padding:12px;font:700 .92rem var(--b);min-height:50px;cursor:pointer}
+.pwa-dismiss-btn:hover{color:var(--ink);border-color:var(--mute)}
+.pwa-ios-instructions{display:none;background:rgba(255,210,63,.08);border:1px solid rgba(255,210,63,.25);border-radius:16px;padding:12px 14px;font-size:.88rem;color:var(--ink)}
+.pwa-ios-instructions ol{margin:6px 0 0;padding-left:20px}
+.pwa-ios-instructions li{margin-bottom:4px}
+.pwa-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:240;opacity:0;pointer-events:none;transition:opacity .4s}
+.pwa-backdrop.show{opacity:1;pointer-events:auto}
+
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}.ch{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav><div class="w">
+<a class="logo" href="#top"><b>D</b>DEV STORES</a>
+<ul><li><a href="#shelf">Shelf</a></li><li><a href="#how">How it works</a></li><li><a href="#visit">Visit</a></li></ul>
+<div class="nav-actions">
+  <button class="pwa-nav-btn" id="pwaNavBtn" aria-label="Install Dev Stores app"><span>📲</span> <span>Install App</span></button>
+  <button class="cartb" id="cb" aria-label="Open my quote">My quote <i id="qc">0</i></button>
+</div>
+</div></nav>
+
+<header class="hero" id="top"><div class="w">
+<span class="tag"><i></i>Convenience store · Rajajinagar, Bengaluru</span>
+<h1 id="h1" aria-label="Dev Stores"><span class="l" data-k>Dev</span><span class="l l2" data-k>Stores</span></h1>
+<span class="script">everything you need, round the corner</span>
+<div class="hf"><p>Daily essentials from your neighbourhood store. Tap what you need, build a quote, send it on WhatsApp. Done.</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn hot" href="#shelf">Browse the shelf ↓</a><a class="btn" href="#visit">Find the store</a></div></div>
+</div>
+<button class="fl" data-add="milk" data-d="1.2" style="--x:58%;--y:7%;--z:min(8vw,13vh);--t:5s" aria-label="Add milk"><span>🥛</span></button>
+<button class="fl" data-add="chips" data-d="2" style="--x:74%;--y:3%;--z:min(9vw,14vh);--t:6.5s" aria-label="Add chips"><span>🍟</span></button>
+<button class="fl" data-add="soda" data-d="1.6" style="--x:84%;--y:26%;--z:min(7vw,11vh);--t:5.5s" aria-label="Add soda"><span>🥤</span></button>
+<button class="fl" data-add="bread" data-d="2.4" style="--x:62%;--y:27%;--z:min(8vw,13vh);--t:7s" aria-label="Add bread"><span>🍞</span></button>
+<button class="fl" data-add="soap" data-d="1" style="--x:90%;--y:6%;--z:min(5vw,8vh);--t:4.5s" aria-label="Add soap"><span>🧼</span></button>
+</header>
+
+<div class="band" id="b1" aria-hidden="true"><div id="t1"></div></div>
+<div class="band b2" id="b2" aria-hidden="true"><div id="t2"></div></div>
+
+<section class="stage" id="shelf"><div class="ghost" id="ghost" aria-hidden="true">ALL</div><div class="w">
+<span class="k">the shelf</span>
+<h2 class="kin" data-k>Pick what you need</h2>
+<p class="lead">Tap Add and your quote builds itself. The store confirms prices and availability when it replies.</p>
+<ul class="chips" id="chips"></ul>
+<ul class="grid" id="grid"></ul>
+</div></section>
+
+<section id="how"><div class="w">
+<span class="k">how it works</span>
+<h2 class="kin" data-k>Three taps to a quote</h2>
+<ol class="steps">
+<li><h3>Pick</h3><p>Tap the items you need. Change quantities any time.</p></li>
+<li><h3>Quote</h3><p>Add your name and a note. Your list writes itself.</p></li>
+<li><h3>Send</h3><p>One tap to WhatsApp. The store replies with prices.</p></li>
+</ol>
+<div class="stats">
+<div><b data-n="12">0</b>Daily essentials</div><div><b data-n="3">0</b>Taps to order</div><div><b data-n="0">0</b>Accounts needed</div><div><b data-n="560010">0</b>Your pincode</div>
+</div></div></section>
+
+<section class="visit" id="visit"><div class="w">
+<span class="k">visit</span>
+<h2 class="kin" data-k>Find us in Rajajinagar</h2>
+<address>5/1, 10th Main Rd, 2nd Block, Rajajinagar, Bengaluru 560010</address>
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<a class="btn hot" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Dev+Stores+5%2F1+10th+Main+Rd+Rajajinagar+Bengaluru">Open in Maps ↗</a>
+<button class="btn" id="cp">Copy address</button></div>
+</div></section>
+
+<footer>© Dev Stores, Rajajinagar, Bengaluru · Designed by <a href="https://thoshotech.com" target="_blank" rel="noopener">Thosho Tech</a></footer>
+
+<div class="bd" id="bd"></div>
+<aside id="dr" aria-label="My quote"><h2>My quote <button id="cl" aria-label="Close">✕</button></h2>
+<ul id="ql"></ul>
+<input id="nm" placeholder="Your name" autocomplete="name"><input id="nt" placeholder="Note for the store (optional)">
+<button class="btn hot" id="send" style="justify-content:center">Send on WhatsApp</button></aside>
+<div class="toast" id="ts"></div>
+
+<!-- PWA Install Popup / Modal -->
+<div class="pwa-backdrop" id="pwaBackdrop"></div>
+<div id="pwaModal" role="dialog" aria-modal="true" aria-labelledby="pwaModalTitle">
+  <div class="pwa-header">
+    <div class="pwa-icon">D</div>
+    <div class="pwa-title-wrap">
+      <h3 class="pwa-title" id="pwaModalTitle">Install Dev Stores</h3>
+      <div class="pwa-sub">Convenience store in your pocket</div>
+    </div>
+    <button class="pwa-close" id="pwaClose" aria-label="Close installation prompt">✕</button>
+  </div>
+  <p class="pwa-body">Install Dev Stores on your device for instant offline access, lightning-fast WhatsApp quotes, and a full native application experience.</p>
+  <div class="pwa-features">
+    <div class="pwa-feature"><span>⚡</span><span><b>Instant</b> launch</span></div>
+    <div class="pwa-feature"><span>📦</span><span><b>Offline</b> shelf view</span></div>
+    <div class="pwa-feature"><span>💬</span><span><b>1-Tap</b> WhatsApp</span></div>
+    <div class="pwa-feature"><span>📱</span><span><b>App-like</b> full screen</span></div>
+  </div>
+  <div class="pwa-ios-instructions" id="pwaIosInstructions">
+    <strong>To install on your iPhone / iPad:</strong>
+    <ol>
+      <li>Tap the <strong>Share</strong> button <span style="font-size:1.1rem;vertical-align:middle">⎋</span> in Safari bar below.</li>
+      <li>Scroll down and tap <strong>Add to Home Screen</strong> <span style="font-size:1.1rem;vertical-align:middle">⊞</span>.</li>
+      <li>Tap <strong>Add</strong> in the top right corner.</li>
+    </ol>
+  </div>
+  <div class="pwa-actions">
+    <button class="pwa-install-btn" id="pwaInstallBtn"><span>📲</span> <span id="pwaBtnText">Install App</span></button>
+    <button class="pwa-dismiss-btn" id="pwaDismissBtn">Maybe Later</button>
+  </div>
+</div>
+
+<script>
+(function(){
+// ---- EDIT ME: store WhatsApp number with country code, e.g. "919876543210" ----
+var WA="";
+// ---- EDIT ME: product photos. Paste a data: URI or a URL of the client's own photo per product id ----
+var PHOTOS={/* milk:"data:image/jpeg;base64,..." */};
+var P=[["milk","🥛","Fresh Milk","Dairy & Bread"],["bread","🍞","Bread","Dairy & Bread"],["eggs","🥚","Eggs","Dairy & Bread"],["chips","🍟","Chips","Snacks"],["biscuit","🍪","Biscuits","Snacks"],["choco","🍫","Chocolates","Snacks"],["soda","🥤","Soft Drinks","Drinks"],["juice","🧃","Juices","Drinks"],["water","💧","Packaged Water","Drinks"],["soap","🧼","Soaps","Home care"],["clean","🧴","Cleaners","Home care"],["book","📓","Notebooks","Stationery"]];
+var C={"All":"#FFD23F","Dairy & Bread":"#FFE9A8","Snacks":"#FF6B1A","Drinks":"#4CC9F0","Home care":"#3FCB7C","Stationery":"#C77DFF"};
+var $=function(s){return document.querySelector(s)},reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+var Q={},cat="All";
+function split(el){var i=0,t=el.textContent;el.setAttribute("aria-label",t);el.innerHTML=t.split(" ").map(function(w){return '<span class="wd" aria-hidden="true">'+[...w].map(function(c){return '<span class="ch" style="--i:'+(i++)+'">'+c+'</span>'}).join("")+'</span>'}).join(" ");}
+document.querySelectorAll("[data-k]").forEach(function(e){var inH1=e.classList.contains("l");if(inH1){var t=e.textContent;e.setAttribute("aria-hidden","true");e.innerHTML=[...t].map(function(c,i){return '<span class="ch" style="--i:'+(i+(t==="Stores"?3:0))+'">'+c+'</span>'}).join("")}else split(e)});
+requestAnimationFrame(function(){$("#h1").classList.add("go")});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.3});
+document.querySelectorAll(".kin").forEach(function(e){io.observe(e)});
+// marquee
+function mq(id,words){var h="";for(var k=0;k<3;k++)words.forEach(function(w,i){h+="<span>"+w+"</span>"+(i%2?"<em>✦</em>":"<span>✦</span>")});$(id).innerHTML=h}
+mq("#t1",["Fresh daily","Milk & bread","Snacks","Cold drinks","Home care"]);mq("#t2",["Rajajinagar","Tap · Quote · Send","Your local store","Open the quote","Dev Stores"]);
+// shelf
+function grid(){var g=$("#grid");g.innerHTML="";var n=0;P.filter(function(p){return cat==="All"||p[3]===cat}).forEach(function(p){var li=document.createElement("li");li.className="card";li.style.setProperty("--n",n++);
+li.innerHTML='<div class="ph">'+(PHOTOS[p[0]]?'<img alt="'+p[2]+'" src="'+PHOTOS[p[0]]+'">':'<span>'+p[1]+'</span>')+'</div><h3>'+p[2]+'</h3><small>'+p[3]+'</small><button class="add" data-add="'+p[0]+'">+ Add to quote</button>';
+li.addEventListener("pointermove",function(e){var r=li.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;li.style.setProperty("--ry",(x-.5)*14+"deg");li.style.setProperty("--rx",(.5-y)*14+"deg");li.style.setProperty("--gx",x*100+"%");li.style.setProperty("--gy",y*100+"%")});
+li.addEventListener("pointerleave",function(){li.style.setProperty("--rx","0deg");li.style.setProperty("--ry","0deg")});g.appendChild(li)})}
+function chips(){var u=$("#chips");Object.keys(C).forEach(function(c){var li=document.createElement("li"),b=document.createElement("button");b.textContent=c;b.setAttribute("aria-pressed",c===cat);b.onclick=function(){cat=c;document.documentElement.style.setProperty("--fx",C[c]);u.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x.textContent===c)});
+var gh=$("#ghost");gh.animate([{transform:"scale(1.15)",opacity:0},{transform:"scale(1)",opacity:1}],{duration:500,easing:"cubic-bezier(.2,1.3,.4,1)"});gh.textContent=c==="All"?"ALL":c.split(" ")[0];grid()};li.appendChild(b);u.appendChild(li)})}
+chips();grid();
+// quote
+function toast(m){var t=$("#ts");t.textContent=m;t.classList.add("on");clearTimeout(toast.i);toast.i=setTimeout(function(){t.classList.remove("on")},2200)}
+function find(id){return P.filter(function(p){return p[0]===id})[0]}
+function render(){var l=$("#ql"),n=0;l.innerHTML="";Object.keys(Q).forEach(function(id){var p=find(id);n+=Q[id];var li=document.createElement("li");li.innerHTML='<span>'+p[1]+'</span><b>'+p[2]+'</b><button data-m="'+id+'" aria-label="Less">−</button><span>'+Q[id]+'</span><button data-p="'+id+'" aria-label="More">+</button>';l.appendChild(li)});
+if(!n)l.innerHTML='<li class="empty">Nothing yet. Tap any product to add it.</li>';$("#qc").textContent=n;var b=$("#cb");b.classList.remove("bump");void b.offsetWidth;b.classList.add("bump")}
+function add(id,from){Q[id]=(Q[id]||0)+1;render();if(from&&!reduce){var r=from.getBoundingClientRect(),c=$("#cb").getBoundingClientRect(),f=document.createElement("div");f.className="fly";f.textContent=find(id)[1];f.style.left=r.left+r.width/2-20+"px";f.style.top=r.top+"px";document.body.appendChild(f);
+f.animate([{transform:"scale(1)"},{transform:"translate("+(c.left-r.left)+"px,"+(c.top-r.top)+"px) scale(.3) rotate(540deg)",opacity:.4}],{duration:750,easing:"cubic-bezier(.5,-.3,.7,1)"}).onfinish=function(){f.remove()}}}
+document.addEventListener("click",function(e){var a=e.target.closest("[data-add]"),m=e.target.closest("[data-m]"),p=e.target.closest("[data-p]");
+if(a)add(a.dataset.add,a.classList.contains("fl")?a:a.closest(".card").querySelector(".ph span")||a);
+if(p){Q[p.dataset.p]++;render()}if(m){var k=m.dataset.m;if(--Q[k]<=0)delete Q[k];render()}});
+function dr(o){$("#dr").classList.toggle("open",o);$("#bd").classList.toggle("open",o)}
+$("#cb").onclick=function(){dr(true)};$("#cl").onclick=$("#bd").onclick=function(){dr(false)};
+document.addEventListener("keydown",function(e){if(e.key==="Escape")dr(false)});
+$("#send").onclick=function(){var ids=Object.keys(Q);if(!ids.length){toast("Add something first");return}
+var m="Hello Dev Stores"+($("#nm").value?", this is "+$("#nm").value:"")+". I'd like a quote for:\n"+ids.map(function(i){return "• "+find(i)[2]+" × "+Q[i]}).join("\n")+($("#nt").value?"\nNote: "+$("#nt").value:"");
+open("https://wa.me/"+WA+"?text="+encodeURIComponent(m),"_blank")};
+$("#cp").onclick=function(){var t="5/1, 10th Main Rd, 2nd Block, Rajajinagar, Bengaluru 560010";(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){toast("Address copied")},function(){toast("Copy not available")})};
+// scroll + pointer kinetics
+var lastY=scrollY,sk=0;
+function onS(){var y=scrollY,h=document.documentElement.scrollHeight-innerHeight;$("#prog").style.transform="scaleX("+(h>0?y/h:0)+")";
+if(!reduce){var v=y-lastY;lastY=y;sk+=(Math.max(-3,Math.min(3,v*.12))-sk)*.5;["b1","b2"].forEach(function(id,i){var b=$("#"+id);b.style.setProperty("--sk",(i?-1:1)*sk*.4+"deg");b.firstElementChild.style.transform="translateX("+(i?(y*.35-1200):(-y*.35))+"px)"})}}
+addEventListener("scroll",onS,{passive:true});onS();
+var mx=innerWidth/2,my=innerHeight/2,tx=mx,ty=my;
+if(!reduce&&matchMedia("(hover:hover)").matches){
+addEventListener("pointermove",function(e){tx=e.clientX;ty=e.clientY});
+var chs=document.querySelectorAll("h1 .ch"),fls=document.querySelectorAll(".fl"),hero=$(".hero");
+(function loop(){mx+=(tx-mx)*.12;my+=(ty-my)*.12;
+chs.forEach(function(c){var r=c.getBoundingClientRect(),d=Math.hypot(mx-(r.left+r.width/2),my-(r.top+r.height/2)),k=Math.max(0,1-d/260);c.style.setProperty("--w",Math.round(900-k*650));c.style.setProperty("--sc",(1+k*.12).toFixed(3))});
+var cx=(mx/innerWidth-.5),cy=(my/innerHeight-.5);fls.forEach(function(f){var d=+f.dataset.d;f.style.setProperty("--px",cx*-30*d+"px");f.style.setProperty("--py",cy*-30*d+"px")});
+hero.style.setProperty("--mx",mx/innerWidth*100+"%");hero.style.setProperty("--my",my/innerHeight*100+"%");requestAnimationFrame(loop)})()}
+// counters
+var co=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;co.unobserve(e.target);var t=+e.target.dataset.n,s=performance.now();(function f(n){var p=Math.min(1,(n-s)/1400);e.target.textContent=Math.round(t*(1-Math.pow(1-p,4)));if(p<1)requestAnimationFrame(f)})(s)})},{threshold:.6});
+document.querySelectorAll("[data-n]").forEach(function(e){co.observe(e)});
+render();$("#qc").textContent="0";
+
+// ==========================================
+// PWA & INSTALL POP-UP LOGIC
+// ==========================================
+// 1. Service Worker registration
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('./sw.js').then(function(reg) {
+      console.log('Dev Stores Service Worker registered with scope:', reg.scope);
+    }).catch(function(err) {
+      console.warn('Service Worker registration failed:', err);
+    });
+  });
+}
+
+// 2. Install prompt management
+var deferredPrompt = null;
+var isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+var isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
+var pwaModal = document.getElementById('pwaModal');
+var pwaBackdrop = document.getElementById('pwaBackdrop');
+var pwaInstallBtn = document.getElementById('pwaInstallBtn');
+var pwaDismissBtn = document.getElementById('pwaDismissBtn');
+var pwaClose = document.getElementById('pwaClose');
+var pwaNavBtn = document.getElementById('pwaNavBtn');
+var pwaIosInstructions = document.getElementById('pwaIosInstructions');
+
+function showPwaModal() {
+  if (isStandalone) return;
+  if (isIos) {
+    pwaIosInstructions.style.display = 'block';
+    pwaInstallBtn.style.display = 'none';
+  } else {
+    pwaIosInstructions.style.display = 'none';
+    pwaInstallBtn.style.display = 'inline-flex';
+  }
+  pwaModal.classList.add('show');
+  pwaBackdrop.classList.add('show');
+}
+
+function hidePwaModal() {
+  pwaModal.classList.remove('show');
+  pwaBackdrop.classList.remove('show');
+}
+
+// Intercept beforeinstallprompt for Android Chrome, Desktop, etc.
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  deferredPrompt = e;
+  if (!sessionStorage.getItem('pwa_prompt_dismissed') && !isStandalone) {
+    setTimeout(showPwaModal, 800);
+  }
+});
+
+// Auto show on first visit on mobile/devices if not standalone
+window.addEventListener('DOMContentLoaded', function() {
+  if (isStandalone) {
+    if (pwaNavBtn) pwaNavBtn.style.display = 'none';
+    return;
+  }
+  if (!sessionStorage.getItem('pwa_prompt_dismissed')) {
+    setTimeout(function() {
+      if (!isStandalone) showPwaModal();
+    }, 1200);
+  }
+});
+
+// App installed event
+window.addEventListener('appinstalled', function() {
+  deferredPrompt = null;
+  hidePwaModal();
+  if (pwaNavBtn) pwaNavBtn.style.display = 'none';
+  toast('Dev Stores installed successfully! 🎉');
+});
+
+// User interactions
+if (pwaInstallBtn) {
+  pwaInstallBtn.onclick = function() {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function(choiceResult) {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted PWA installation');
+        } else {
+          console.log('User dismissed PWA installation');
+        }
+        deferredPrompt = null;
+        hidePwaModal();
+      });
+    } else {
+      if (isIos) {
+        pwaIosInstructions.style.display = 'block';
+        pwaInstallBtn.style.display = 'none';
+      } else {
+        toast('To install, tap browser menu (⋮) -> Add to Home Screen');
+        hidePwaModal();
+      }
+    }
+  };
+}
+
+if (pwaDismissBtn) {
+  pwaDismissBtn.onclick = function() {
+    sessionStorage.setItem('pwa_prompt_dismissed', 'true');
+    hidePwaModal();
+  };
+}
+if (pwaClose) {
+  pwaClose.onclick = function() {
+    sessionStorage.setItem('pwa_prompt_dismissed', 'true');
+    hidePwaModal();
+  };
+}
+if (pwaBackdrop) {
+  pwaBackdrop.onclick = function() {
+    sessionStorage.setItem('pwa_prompt_dismissed', 'true');
+    hidePwaModal();
+  };
+}
+if (pwaNavBtn) {
+  pwaNavBtn.onclick = function() {
+    showPwaModal();
+  };
+}
+
+})();
+</script>
+</body>
+</html>
