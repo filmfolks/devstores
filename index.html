@@ -30,33 +30,42 @@ a{color:inherit}button{font:inherit;color:inherit;cursor:pointer}
 #prog{position:fixed;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--fx),var(--hot));transform:scaleX(0);transform-origin:left;z-index:90}
 /* nav */
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:rgba(7,20,14,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-nav .w{display:flex;align-items:center;gap:14px;min-height:64px}
+nav .w{display:flex;align-items:center;gap:12px;min-height:64px}
 .logo{font:900 1.05rem var(--d);text-decoration:none;margin-right:auto;display:flex;gap:10px;align-items:center}
 .logo b{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--fx);color:#07140E;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
 .logo:hover b{transform:rotate(-14deg) scale(1.12)}
-nav ul{display:none;gap:4px;list-style:none;margin:0;padding:0}@media(min-width:820px){nav ul{display:flex}}
+nav ul{display:none;gap:4px;list-style:none;margin:0;padding:0}@media(min-width:920px){nav ul{display:flex}}
 nav ul a{padding:8px 14px;border-radius:99px;text-decoration:none;font-weight:600;transition:.25s}
 nav ul a:hover{background:var(--fx);color:#07140E}
-.nav-actions{display:flex;align-items:center;gap:10px}
+.nav-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .pwa-nav-btn{display:inline-flex;align-items:center;gap:6px;background:var(--card);color:var(--fx);border:1.5px solid var(--fx);border-radius:99px;padding:6px 14px;font-weight:700;font-size:.85rem;min-height:42px;transition:all .25s ease}
 .pwa-nav-btn:hover{background:var(--fx);color:#07140E;transform:scale(1.04)}
 .cartb{display:flex;gap:10px;align-items:center;background:var(--hot);color:#07140E;border:0;border-radius:99px;padding:8px 10px 8px 18px;font-weight:800;min-height:46px;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
 .cartb:hover{transform:scale(1.06) rotate(-2deg)}
 .cartb i{font-style:normal;min-width:30px;height:30px;display:grid;place-items:center;border-radius:99px;background:#07140E;color:var(--hot)}
 .cartb.bump i{animation:bump .5s}@keyframes bump{40%{transform:scale(1.7) rotate(-14deg)}}
+@media(max-width:540px){
+  nav .w{min-height:56px;gap:8px}
+  .logo{font-size:.92rem;gap:8px}
+  .logo b{width:32px;height:32px;border-radius:10px;font-size:.9rem}
+  .pwa-nav-btn{padding:6px 10px;font-size:.8rem;min-height:38px}
+  .pwa-nav-btn .pwa-nav-text{display:none}
+  .cartb{padding:6px 8px 6px 14px;min-height:38px;font-size:.85rem}
+  .cartb i{min-width:26px;height:26px;font-size:.8rem}
+}
 /* hero */
 .hero{position:relative;min-height:calc(100svh - 64px);display:flex;flex-direction:column;justify-content:center;overflow:clip;padding-block:40px;isolation:isolate}
 .hero::before{content:"";position:absolute;inset:-20%;z-index:-1;background:radial-gradient(40% 40% at var(--mx,70%) var(--my,30%),rgba(255,210,63,.22),transparent 70%),radial-gradient(50% 50% at 10% 90%,rgba(23,130,74,.35),transparent 70%)}
 .tag{font:600 .75rem var(--b);letter-spacing:.2em;text-transform:uppercase;display:flex;gap:10px;align-items:center}
 .tag i{width:10px;height:10px;border-radius:50%;background:#3FCB7C;animation:ping 2s infinite}
 @keyframes ping{0%{box-shadow:0 0 0 0 rgba(63,203,124,.7)}80%,100%{box-shadow:0 0 0 14px transparent}}
-h1{margin:.2em 0 0;font:900 clamp(3.4rem,15.5vw,15rem)/.86 var(--d);letter-spacing:-.03em;text-transform:uppercase}
+h1{margin:.2em 0 0;font:900 clamp(2.8rem,13vw,14rem)/.86 var(--d);letter-spacing:-.03em;text-transform:uppercase;word-break:break-word}
 h1 .l{display:block;white-space:nowrap}h1 .l2{color:var(--fx)}
 .ch{display:inline-block;transform:translate3d(0,110%,0) rotate(8deg);opacity:0;font-variation-settings:"wght" var(--w,900);scale:var(--sc,1)}
 .go .ch{animation:drop .9s cubic-bezier(.2,1.4,.4,1) forwards;animation-delay:calc(var(--i)*55ms + 200ms)}
 @keyframes drop{to{transform:none;opacity:1}}
 h1 .l2 .ch{transition:color .3s}h1 .l2 .ch:hover{color:var(--ink)}
-.script{font:400 clamp(1.6rem,4vw,3rem)/1 var(--s);color:var(--fx);display:inline-block;transform:rotate(-4deg);margin-top:18px}
+.script{font:400 clamp(1.2rem,3vw,2.2rem)/1.3 var(--s);color:var(--fx);display:block;transform:none;margin-top:10px;margin-bottom:6px;letter-spacing:.02em}
 .hf{display:flex;flex-wrap:wrap;gap:24px 48px;justify-content:space-between;align-items:flex-end;margin-top:24px}
 .hf p{max-width:44ch;margin:0;font-size:clamp(1.05rem,2vw,1.3rem);color:var(--mute)}
 .btn{display:inline-flex;gap:10px;align-items:center;min-height:52px;padding:12px 26px;border-radius:99px;border:2px solid var(--ink);background:none;font-weight:800;text-decoration:none;transition:.3s cubic-bezier(.3,1.6,.5,1)}
@@ -64,7 +73,9 @@ h1 .l2 .ch{transition:color .3s}h1 .l2 .ch:hover{color:var(--ink)}
 .btn.hot{background:var(--hot);border-color:var(--hot);color:#07140E}
 .fl{position:absolute;z-index:3;font-size:var(--z);left:var(--x);top:var(--y);filter:drop-shadow(0 18px 18px rgba(0,0,0,.5));animation:flt var(--t) ease-in-out infinite alternate;border:0;background:none;padding:0;transform:translate(var(--px,0),var(--py,0))}
 .fl span{display:block;transition:transform .4s cubic-bezier(.3,1.8,.5,1)}.fl:hover span{transform:scale(1.35) rotate(14deg)}
-@keyframes flt{to{margin-top:-18px}}@media(max-width:640px){.fl:nth-of-type(n+4){display:none}}
+@keyframes flt{to{margin-top:-18px}}
+@media(max-width:768px){.fl:nth-of-type(n+3){display:none}}
+@media(max-width:480px){.fl{display:none}}
 /* bands */
 .band{overflow:hidden;white-space:nowrap;padding-block:14px;border-block:2px solid #07140E;background:var(--fx);color:#07140E;transform:skewY(var(--sk,0deg))}
 .band.b2{background:var(--hot);margin-top:-2px}
@@ -86,6 +97,14 @@ h2{font:900 clamp(2.2rem,7vw,6rem)/.95 var(--d);letter-spacing:-.04em;text-trans
 .chips button:hover{transform:translateY(-3px) rotate(-2deg)}
 .chips button[aria-pressed=true]{background:var(--fx);color:#07140E;border-color:var(--fx);transform:scale(1.07)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:18px;list-style:none;padding:0;margin:0}
+@media (max-width:560px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .card{border-radius:20px;padding:12px}
+  .ph{height:110px;font-size:3.2rem;border-radius:14px;margin-bottom:10px}
+  .card h3{font-size:.92rem}
+  .card small{font-size:.78rem}
+  .add{min-height:38px;font-size:.82rem;border-radius:10px;margin-top:10px}
+}
 .card{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:20px;position:relative;overflow:hidden;transform-style:preserve-3d;transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s,border-color .3s;animation:pop .6s cubic-bezier(.2,1.5,.4,1) both;animation-delay:calc(var(--n)*50ms)}
 @keyframes pop{from{opacity:0;transform:translateY(40px) scale(.9)}}
 .card:hover{border-color:var(--fx)}
@@ -99,58 +118,88 @@ h2{font:900 clamp(2.2rem,7vw,6rem)/.95 var(--d);letter-spacing:-.04em;text-trans
 .add:active{transform:scale(.94)}
 .fly{position:fixed;z-index:200;font-size:2.4rem;pointer-events:none}
 /* steps */
-.steps{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));list-style:none;padding:0;margin:40px 0 0;counter-reset:s}
-.steps li{counter-increment:s;border-top:3px solid var(--fx);padding-top:20px;position:relative}
-.steps li::before{content:counter(s);font:900 7rem/.8 var(--d);color:var(--hot);display:block;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.steps{display:grid;gap:clamp(16px,2vw,24px);grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));list-style:none;padding:0;margin:40px 0 0;counter-reset:s}
+.steps li{min-width:0;counter-increment:s;border-top:3px solid var(--fx);padding-top:20px;position:relative}
+.steps li::before{content:counter(s);font:900 clamp(4.2rem,7.5vw,6.5rem)/.8 var(--d);color:var(--hot);display:block;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
 .steps li:hover::before{transform:translateX(12px) rotate(-6deg)}
 .steps h3{font:900 1.6rem var(--d);margin:14px 0 4px;text-transform:uppercase}.steps p{color:var(--mute);margin:0}
 /* stats */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;margin-top:50px}
-.stats b{display:block;font:900 clamp(2.6rem,7vw,5rem)/1 var(--d);color:var(--fx)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,2.5vw,32px);margin-top:50px}
+.stats > div{min-width:0;overflow:hidden}
+.stats b{display:block;font:900 clamp(2rem,3.8vw,3.5rem)/1.05 var(--d);color:var(--fx);letter-spacing:-.03em;white-space:nowrap}
+.stats b.stat-pincode, .stats b[data-n="560010"]{font-size:clamp(1.4rem,2.4vw,2.6rem);letter-spacing:-.05em;max-width:100%}
+@media (max-width:960px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}
+  .stats b{font-size:clamp(1.9rem,4.5vw,2.8rem)}
+  .stats b.stat-pincode, .stats b[data-n="560010"]{font-size:clamp(1.4rem,3.6vw,2.2rem)}
+}
+@media (max-width:540px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 12px;margin-top:36px}
+  .stats b{font-size:clamp(1.6rem,6vw,2.2rem)}
+  .stats b.stat-pincode, .stats b[data-n="560010"]{font-size:clamp(1.15rem,4.4vw,1.55rem)!important;letter-spacing:-.05em}
+  .stats div{font-size:.85rem}
+}
+@media (max-width:340px){
+  .stats{grid-template-columns:1fr;gap:16px}
+  .stats b.stat-pincode, .stats b[data-n="560010"]{font-size:1.6rem!important}
+}
 /* visit */
 .visit{background:var(--fx);color:#07140E}.visit .k{color:#07140E}.visit .btn{border-color:#07140E}.visit .btn:hover{background:#07140E;color:var(--fx)}
-.visit .btn.hot{color:#07140E}.visit address{font:800 clamp(1.4rem,3vw,2.2rem)/1.2 var(--d);font-style:normal;margin:20px 0 28px;letter-spacing:-.03em}
+.visit .btn.hot{color:#07140E}.visit address{font:800 clamp(1.2rem,2.5vw,2rem)/1.25 var(--d);font-style:normal;margin:20px 0 28px;letter-spacing:-.02em;word-break:break-word}
 footer{padding:30px var(--g);text-align:center;color:var(--mute);font-size:.9rem;border-top:1px solid var(--line)}
 footer a{color:var(--fx);text-decoration:underline;text-underline-offset:3px;font-weight:600;transition:color .2s}
 footer a:hover{color:var(--ink)}
 /* drawer */
-#dr{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--bg2);border-left:2px solid var(--fx);z-index:100;transform:translateX(105%);transition:transform .5s cubic-bezier(.2,1,.3,1);display:flex;flex-direction:column;padding:22px;padding-top:calc(22px + env(safe-area-inset-top,0px));padding-bottom:calc(22px + env(safe-area-inset-bottom,0px))}
-#dr.open{transform:none}
-#dr h2{font-size:2.2rem;margin:0 0 10px;display:flex;justify-content:space-between;align-items:center}
-#dr h2 button{border:2px solid var(--line);background:none;border-radius:50%;width:42px;height:42px}
-#ql{flex:1;overflow:auto;list-style:none;padding:0;margin:0}
-#ql li{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
-#ql li>span:first-child{font-size:1.8rem}#ql li b{flex:1;font-weight:700}
-#ql button{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--mute);background:none}
-#dr input{width:100%;margin:14px 0;padding:14px;border-radius:14px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
+#dr{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);max-width:100vw;background:var(--bg2);border-left:2px solid var(--fx);z-index:100;transform:translateX(105%);transition:transform .4s cubic-bezier(.2,1,.3,1);display:flex;flex-direction:column;padding:20px 18px;padding-top:calc(20px + env(safe-area-inset-top,0px));padding-bottom:calc(20px + env(safe-area-inset-bottom,0px));box-sizing:border-box}
+#dr.open{transform:translateX(0)}
+#dr h2{font-size:clamp(1.3rem,5vw,2rem);margin:0 0 12px;display:flex;justify-content:space-between;align-items:center}
+#dr h2 button{border:2px solid var(--line);background:none;border-radius:50%;width:38px;height:38px;display:grid;place-items:center;flex-shrink:0}
+#ql{flex:1;overflow-y:auto;overflow-x:hidden;list-style:none;padding:0;margin:0}
+#ql li{display:flex;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);min-width:0;width:100%;box-sizing:border-box}
+.ql-emoji,#ql li>span:first-child{font-size:1.6rem;flex-shrink:0}
+.ql-name,#ql li b{flex:1;min-width:0;font-weight:700;font-size:.92rem;line-height:1.3;overflow-wrap:break-word;word-break:break-word}
+.ql-qty{display:inline-flex;align-items:center;gap:6px;flex-shrink:0}
+.ql-qty button,#ql button{width:32px;height:32px;min-width:32px;border-radius:50%;border:1.5px solid var(--mute);background:none;display:grid;place-items:center;color:var(--ink);font-weight:800;font-size:1.1rem;transition:.2s;flex-shrink:0}
+.ql-qty button:active,#ql button:active{background:var(--fx);color:#07140E;border-color:var(--fx)}
+#dr input{width:100%;margin:6px 0;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:.92rem;box-sizing:border-box}
 .empty{color:var(--mute);padding:20px 0}
+#dr #send, .btn.btn-wa{margin-top:10px;min-height:50px;width:100%;font-size:1rem;background:#25D366!important;border:2px solid #25D366!important;color:#FFFFFF!important;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 16px rgba(37,211,102,.35);transition:all .2s ease}
+#dr #send:hover, .btn.btn-wa:hover{background:#20BA5A!important;border-color:#20BA5A!important;color:#FFFFFF!important;transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,.45)}
+#dr #send:active, .btn.btn-wa:active{background:#1B9E4D!important;transform:scale(.98)}
 .bd{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:95;opacity:0;pointer-events:none;transition:.4s;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}.bd.open{opacity:1;pointer-events:auto}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));translate:-50% 140px;background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:99px;font-weight:700;z-index:210;transition:translate .5s cubic-bezier(.3,1.5,.5,1)}.toast.on{translate:-50% 0}
 
 /* PWA Install Modal / Sheet */
-#pwaModal{position:fixed;bottom:0;left:0;right:0;margin:auto;max-width:480px;background:#0d2218;border:2px solid var(--fx);border-bottom:none;border-radius:28px 28px 0 0;padding:26px 24px calc(24px + env(safe-area-inset-bottom,0px));z-index:250;box-shadow:0 -12px 40px rgba(0,0,0,.8);transform:translateY(110%);transition:transform .5s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;gap:16px}
+#pwaModal{position:fixed;bottom:0;left:0;right:0;margin:auto;max-width:440px;width:100%;max-height:calc(85svh - env(safe-area-inset-top,0px));overflow-y:auto;overscroll-behavior:contain;background:#0d2218;border:2px solid var(--fx);border-bottom:none;border-radius:24px 24px 0 0;padding:20px 18px calc(18px + env(safe-area-inset-bottom,0px));z-index:250;box-shadow:0 -12px 40px rgba(0,0,0,.85);transform:translateY(110%);transition:transform .45s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;gap:12px;box-sizing:border-box}
 #pwaModal.show{transform:translateY(0)}
-.pwa-header{display:flex;align-items:center;gap:14px}
-.pwa-icon{width:56px;height:56px;border-radius:16px;background:var(--fx);color:#07140E;display:grid;place-items:center;font:900 1.8rem var(--d);flex-shrink:0;box-shadow:0 6px 16px rgba(255,210,63,.3)}
-.pwa-title-wrap{flex:1}
-.pwa-title{font:900 1.25rem var(--d);margin:0;letter-spacing:-.02em;color:var(--ink);line-height:1.2}
-.pwa-sub{font-size:.85rem;color:var(--mute);margin-top:3px}
-.pwa-close{border:0;background:rgba(255,255,255,.08);color:var(--mute);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:1.1rem;cursor:pointer;transition:.2s}
+.pwa-header{display:flex;align-items:center;gap:12px}
+.pwa-icon{width:46px;height:46px;border-radius:14px;background:var(--fx);color:#07140E;display:grid;place-items:center;font:900 1.5rem var(--d);flex-shrink:0;box-shadow:0 4px 12px rgba(255,210,63,.3)}
+.pwa-title-wrap{flex:1;min-width:0}
+.pwa-title{font:900 1.15rem var(--d);margin:0;letter-spacing:-.02em;color:var(--ink);line-height:1.2}
+.pwa-sub{font-size:.82rem;color:var(--mute);margin-top:2px}
+.pwa-close{border:0;background:rgba(255,255,255,.08);color:var(--mute);width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:1rem;cursor:pointer;transition:.2s;flex-shrink:0}
 .pwa-close:hover{background:rgba(255,255,255,.18);color:var(--ink)}
-.pwa-body{color:var(--mute);font-size:.95rem;line-height:1.45;margin:0}
-.pwa-features{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0}
-.pwa-feature{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:8px 12px;font-size:.82rem;display:flex;align-items:center;gap:8px}
+.pwa-body{color:var(--mute);font-size:.88rem;line-height:1.4;margin:0}
+.pwa-features{display:flex;gap:6px;flex-wrap:wrap;margin:2px 0}
+.pwa-feature{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:99px;padding:5px 10px;font-size:.78rem;display:inline-flex;align-items:center;gap:6px}
 .pwa-feature b{color:var(--fx)}
-.pwa-actions{display:flex;gap:10px;margin-top:6px}
-.pwa-install-btn{flex:2;background:var(--fx);color:#07140E;border:0;border-radius:99px;padding:14px 20px;font:800 1rem var(--b);min-height:50px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .2s,background .2s}
+.pwa-actions{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.pwa-install-btn{width:100%;background:var(--fx);color:#07140E;border:0;border-radius:99px;padding:12px 18px;font:800 .95rem var(--b);min-height:46px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .2s,background .2s}
 .pwa-install-btn:hover{background:#ffe066;transform:scale(1.02)}
-.pwa-dismiss-btn{flex:1;background:transparent;border:1.5px solid var(--line);color:var(--mute);border-radius:99px;padding:12px;font:700 .92rem var(--b);min-height:50px;cursor:pointer}
-.pwa-dismiss-btn:hover{color:var(--ink);border-color:var(--mute)}
-.pwa-ios-instructions{display:none;background:rgba(255,210,63,.08);border:1px solid rgba(255,210,63,.25);border-radius:16px;padding:12px 14px;font-size:.88rem;color:var(--ink)}
-.pwa-ios-instructions ol{margin:6px 0 0;padding-left:20px}
-.pwa-ios-instructions li{margin-bottom:4px}
-.pwa-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:240;opacity:0;pointer-events:none;transition:opacity .4s}
+.pwa-dismiss-btn{width:100%;background:transparent;border:0;color:var(--mute);padding:6px;font:600 .85rem var(--b);cursor:pointer;text-align:center}
+.pwa-dismiss-btn:hover{color:var(--ink);text-decoration:underline}
+.pwa-ios-instructions{display:none;background:rgba(255,210,63,.08);border:1px solid rgba(255,210,63,.25);border-radius:14px;padding:10px 12px;font-size:.84rem;color:var(--ink)}
+.pwa-ios-instructions ol{margin:4px 0 0;padding-left:18px}
+.pwa-ios-instructions li{margin-bottom:3px}
+.pwa-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:240;opacity:0;pointer-events:none;transition:opacity .4s;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 .pwa-backdrop.show{opacity:1;pointer-events:auto}
+@media (min-width:640px){
+  #pwaModal{bottom:20px;right:20px;left:auto;border-bottom:2px solid var(--fx);border-radius:24px}
+  #dr{border-left:2px solid var(--fx)}
+}
+@media (max-width:540px){
+  #dr{width:100vw;border-left:none;padding:16px 14px}
+}
 
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}.ch{opacity:1;transform:none}}
 </style>
@@ -161,7 +210,7 @@ footer a:hover{color:var(--ink)}
 <a class="logo" href="#top"><b>D</b>DEV STORES</a>
 <ul><li><a href="#shelf">Shelf</a></li><li><a href="#how">How it works</a></li><li><a href="#visit">Visit</a></li></ul>
 <div class="nav-actions">
-  <button class="pwa-nav-btn" id="pwaNavBtn" aria-label="Install Dev Stores app"><span>📲</span> <span>Install App</span></button>
+  <button class="pwa-nav-btn" id="pwaNavBtn" aria-label="Install Dev Stores app"><span>📲</span> <span class="pwa-nav-text">Install App</span></button>
   <button class="cartb" id="cb" aria-label="Open my quote">My quote <i id="qc">0</i></button>
 </div>
 </div></nav>
@@ -200,7 +249,7 @@ footer a:hover{color:var(--ink)}
 <li><h3>Send</h3><p>One tap to WhatsApp. The store replies with prices.</p></li>
 </ol>
 <div class="stats">
-<div><b data-n="12">0</b>Daily essentials</div><div><b data-n="3">0</b>Taps to order</div><div><b data-n="0">0</b>Accounts needed</div><div><b data-n="560010">0</b>Your pincode</div>
+<div><b data-n="12">0</b>Daily essentials</div><div><b data-n="3">0</b>Taps to order</div><div><b data-n="0">0</b>Accounts needed</div><div><b data-n="560010" class="stat-pincode">0</b>Your pincode</div>
 </div></div></section>
 
 <section class="visit" id="visit"><div class="w">
@@ -218,7 +267,7 @@ footer a:hover{color:var(--ink)}
 <aside id="dr" aria-label="My quote"><h2>My quote <button id="cl" aria-label="Close">✕</button></h2>
 <ul id="ql"></ul>
 <input id="nm" placeholder="Your name" autocomplete="name"><input id="nt" placeholder="Note for the store (optional)">
-<button class="btn hot" id="send" style="justify-content:center">Send on WhatsApp</button></aside>
+<button class="btn btn-wa" id="send" style="justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:8px"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.53 7.34C9.33 7.34 9 7.41 8.74 7.69C8.47 7.97 7.74 8.66 7.74 10.06C7.74 11.46 8.76 12.81 8.9 13C9.04 13.19 10.9 16.06 13.75 17.29C14.43 17.58 14.96 17.76 15.37 17.89C16.05 18.11 16.68 18.08 17.17 18C17.72 17.92 18.86 17.31 19.1 16.64C19.34 15.97 19.34 15.39 19.27 15.27C19.2 15.15 19.01 15.08 18.73 14.94C18.45 14.8 17.09 14.13 16.84 14.04C16.59 13.95 16.41 13.9 16.23 14.18C16.05 14.46 15.53 15.08 15.37 15.27C15.21 15.46 15.05 15.48 14.77 15.34C14.49 15.2 13.59 14.9 12.52 13.95C11.69 13.21 11.13 12.3 10.99 12.06C10.85 11.82 10.97 11.69 11.11 11.55C11.24 11.42 11.4 11.21 11.54 11.05C11.68 10.89 11.73 10.77 11.82 10.59C11.91 10.41 11.87 10.25 11.8 10.11C11.73 9.97 11.18 8.62 10.95 8.07C10.73 7.54 10.5 7.61 10.33 7.6C10.17 7.6 9.98 7.59 9.8 7.59C9.62 7.59 9.33 7.66 9.09 7.92"/></svg> <span>Send on WhatsApp</span></button></aside>
 <div class="toast" id="ts"></div>
 
 <!-- PWA Install Popup / Modal -->
@@ -228,23 +277,22 @@ footer a:hover{color:var(--ink)}
     <div class="pwa-icon">D</div>
     <div class="pwa-title-wrap">
       <h3 class="pwa-title" id="pwaModalTitle">Install Dev Stores</h3>
-      <div class="pwa-sub">Convenience store in your pocket</div>
+      <div class="pwa-sub">Your neighbourhood store app</div>
     </div>
     <button class="pwa-close" id="pwaClose" aria-label="Close installation prompt">✕</button>
   </div>
-  <p class="pwa-body">Install Dev Stores on your device for instant offline access, lightning-fast WhatsApp quotes, and a full native application experience.</p>
+  <p class="pwa-body">Get fast offline shelf browsing, 1-tap WhatsApp quotes, and a native application experience right on your device.</p>
   <div class="pwa-features">
     <div class="pwa-feature"><span>⚡</span><span><b>Instant</b> launch</span></div>
-    <div class="pwa-feature"><span>📦</span><span><b>Offline</b> shelf view</span></div>
-    <div class="pwa-feature"><span>💬</span><span><b>1-Tap</b> WhatsApp</span></div>
-    <div class="pwa-feature"><span>📱</span><span><b>App-like</b> full screen</span></div>
+    <div class="pwa-feature"><span>📦</span><span><b>Offline</b> shelf</span></div>
+    <div class="pwa-feature"><span>💬</span><span><b>WhatsApp</b> quotes</span></div>
   </div>
   <div class="pwa-ios-instructions" id="pwaIosInstructions">
-    <strong>To install on your iPhone / iPad:</strong>
+    <strong>To install on iPhone / iPad:</strong>
     <ol>
-      <li>Tap the <strong>Share</strong> button <span style="font-size:1.1rem;vertical-align:middle">⎋</span> in Safari bar below.</li>
-      <li>Scroll down and tap <strong>Add to Home Screen</strong> <span style="font-size:1.1rem;vertical-align:middle">⊞</span>.</li>
-      <li>Tap <strong>Add</strong> in the top right corner.</li>
+      <li>Tap the <strong>Share</strong> button <span style="font-size:1.05rem;vertical-align:middle">⎋</span> in Safari below</li>
+      <li>Scroll & tap <strong>Add to Home Screen</strong> <span style="font-size:1.05rem;vertical-align:middle">⊞</span></li>
+      <li>Tap <strong>Add</strong> in the top right</li>
     </ol>
   </div>
   <div class="pwa-actions">
@@ -256,7 +304,7 @@ footer a:hover{color:var(--ink)}
 <script>
 (function(){
 // ---- EDIT ME: store WhatsApp number with country code, e.g. "919876543210" ----
-var WA="";
+var WA="919008488999";
 // ---- EDIT ME: product photos. Paste a data: URI or a URL of the client's own photo per product id ----
 var PHOTOS={/* milk:"data:image/jpeg;base64,..." */};
 var P=[["milk","🥛","Fresh Milk","Dairy & Bread"],["bread","🍞","Bread","Dairy & Bread"],["eggs","🥚","Eggs","Dairy & Bread"],["chips","🍟","Chips","Snacks"],["biscuit","🍪","Biscuits","Snacks"],["choco","🍫","Chocolates","Snacks"],["soda","🥤","Soft Drinks","Drinks"],["juice","🧃","Juices","Drinks"],["water","💧","Packaged Water","Drinks"],["soap","🧼","Soaps","Home care"],["clean","🧴","Cleaners","Home care"],["book","📓","Notebooks","Stationery"]];
@@ -282,7 +330,7 @@ chips();grid();
 // quote
 function toast(m){var t=$("#ts");t.textContent=m;t.classList.add("on");clearTimeout(toast.i);toast.i=setTimeout(function(){t.classList.remove("on")},2200)}
 function find(id){return P.filter(function(p){return p[0]===id})[0]}
-function render(){var l=$("#ql"),n=0;l.innerHTML="";Object.keys(Q).forEach(function(id){var p=find(id);n+=Q[id];var li=document.createElement("li");li.innerHTML='<span>'+p[1]+'</span><b>'+p[2]+'</b><button data-m="'+id+'" aria-label="Less">−</button><span>'+Q[id]+'</span><button data-p="'+id+'" aria-label="More">+</button>';l.appendChild(li)});
+function render(){var l=$("#ql"),n=0;l.innerHTML="";Object.keys(Q).forEach(function(id){var p=find(id);n+=Q[id];var li=document.createElement("li");li.innerHTML='<span class="ql-emoji">'+p[1]+'</span><b class="ql-name">'+p[2]+'</b><div class="ql-qty"><button data-m="'+id+'" aria-label="Less">−</button><span class="ql-count">'+Q[id]+'</span><button data-p="'+id+'" aria-label="More">+</button></div>';l.appendChild(li)});
 if(!n)l.innerHTML='<li class="empty">Nothing yet. Tap any product to add it.</li>';$("#qc").textContent=n;var b=$("#cb");b.classList.remove("bump");void b.offsetWidth;b.classList.add("bump")}
 function add(id,from){Q[id]=(Q[id]||0)+1;render();if(from&&!reduce){var r=from.getBoundingClientRect(),c=$("#cb").getBoundingClientRect(),f=document.createElement("div");f.className="fly";f.textContent=find(id)[1];f.style.left=r.left+r.width/2-20+"px";f.style.top=r.top+"px";document.body.appendChild(f);
 f.animate([{transform:"scale(1)"},{transform:"translate("+(c.left-r.left)+"px,"+(c.top-r.top)+"px) scale(.3) rotate(540deg)",opacity:.4}],{duration:750,easing:"cubic-bezier(.5,-.3,.7,1)"}).onfinish=function(){f.remove()}}}
@@ -293,7 +341,17 @@ function dr(o){$("#dr").classList.toggle("open",o);$("#bd").classList.toggle("op
 $("#cb").onclick=function(){dr(true)};$("#cl").onclick=$("#bd").onclick=function(){dr(false)};
 document.addEventListener("keydown",function(e){if(e.key==="Escape")dr(false)});
 $("#send").onclick=function(){var ids=Object.keys(Q);if(!ids.length){toast("Add something first");return}
-var m="Hello Dev Stores"+($("#nm").value?", this is "+$("#nm").value:"")+". I'd like a quote for:\n"+ids.map(function(i){return "• "+find(i)[2]+" × "+Q[i]}).join("\n")+($("#nt").value?"\nNote: "+$("#nt").value:"");
+var customerName=$("#nm").value.trim();
+var customerNote=$("#nt").value.trim();
+var itemsList=ids.map(function(i,idx){return (idx+1)+". "+find(i)[2]+" (Qty: "+Q[i]+")";}).join("\n");
+var m="🛍️ *NEW QUOTE REQUEST — DEV STORES*\n"+
+"━━━━━━━━━━━━━━━━━━━━━━\n"+
+(customerName?"👤 *Customer:* "+customerName+"\n":"")+
+"📅 *Date:* "+new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})+"\n\n"+
+"📋 *Items Requested:*\n"+itemsList+"\n\n"+
+(customerNote?"📝 *Note:* "+customerNote+"\n\n":"")+
+"━━━━━━━━━━━━━━━━━━━━━━\n"+
+"Please confirm availability and prices. Thank you!";
 open("https://wa.me/"+WA+"?text="+encodeURIComponent(m),"_blank")};
 $("#cp").onclick=function(){var t="5/1, 10th Main Rd, 2nd Block, Rajajinagar, Bengaluru 560010";(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){toast("Address copied")},function(){toast("Copy not available")})};
 // scroll + pointer kinetics
